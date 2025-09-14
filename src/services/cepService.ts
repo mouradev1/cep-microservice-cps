@@ -21,7 +21,14 @@ export const getCepData = async (cep: string) => {
 
   const externalData = await fetchFromExternalApis(cep);
 
-  if (!externalData) {
+  if (
+    !externalData ||
+    !externalData.cep ||
+    !externalData.logradouro ||
+    !externalData.bairro ||
+    !externalData.localidade ||
+    !externalData.uf
+  ) {
     await redisClient.setEx(key, 43200, JSON.stringify(null));
     throw new Error("CEP não encontrado");
   }
