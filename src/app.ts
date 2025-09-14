@@ -6,6 +6,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+    res.status(200).send({
+        message: "API de Consulta de CEP está funcionando!",
+        version: "1.2.1",
+        status: "OK"
+    });
+});
+
 app.use("/cep", cepRoutes);
 
 export default app;
