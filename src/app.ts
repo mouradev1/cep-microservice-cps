@@ -10,7 +10,8 @@ app.get("/", (req, res) => {
     res.status(200).send({
         message: "API de Consulta de CEP está funcionando!",
         version: "1.2.1",
-        status: "OK"
+        status: "OK",
+        router: "/cep/:cep"
     });
 });
 
