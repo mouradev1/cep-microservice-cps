@@ -8,6 +8,7 @@ const CepSchema = new mongoose.Schema({
     uf: String,
     ibge: String,
     ddd: String,
+    lastProvider: String, // provider que forneceu a última info
     createdAt: { type: Date, default: Date.now }
 });
 
