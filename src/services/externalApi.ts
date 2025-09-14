@@ -11,11 +11,11 @@ const PROVIDERS = [
                 const res = await axios.get<ViaCepResponse>(`https://viacep.com.br/ws/${cep}/json/`);
                 if (!res.data.erro) {
                     return {
-                        cep: res.data.cep,
-                        logradouro: res.data.logradouro,
-                        bairro: res.data.bairro,
-                        localidade: res.data.localidade,
-                        uf: res.data.uf,
+                        cep: res.data.cep.replace(/\D/g, ""),
+                        logradouro: res.data.logradouro || "",
+                        bairro: res.data.bairro || "",
+                        localidade: res.data.localidade || "",
+                        uf: res.data.uf || "",
                         ibge: res.data.ibge || "",
                         ddd: res.data.ddd || ""
                     };
@@ -32,11 +32,11 @@ const PROVIDERS = [
             try {
                 const res = await axios.get<BrasilApiResponse>(`https://brasilapi.com.br/api/cep/v1/${cep}`);
                 return {
-                    cep: res.data.cep,
-                    logradouro: res.data.street,
-                    bairro: res.data.neighborhood,
-                    localidade: res.data.city,
-                    uf: res.data.state,
+                    cep: res.data.cep.replace(/\D/g, ""),
+                    logradouro: res.data.street || "",
+                    bairro: res.data.neighborhood || "",
+                    localidade: res.data.city || "",
+                    uf: res.data.state || "",
                     ibge: res.data.ibge || "",
                     ddd: res.data.ddd || ""
                 };
@@ -53,11 +53,11 @@ const PROVIDERS = [
                 const data = res.data as ApiCepResponse;
                 if (data.ok && data.status === 200) {
                     return {
-                        cep: data.code.replace("-", ""),
-                        logradouro: data.address,
-                        bairro: data.district,
-                        localidade: data.city,
-                        uf: data.state,
+                        cep: data.code.replace(/\D/g, ""),
+                        logradouro: data.address || "",
+                        bairro: data.district || "",
+                        localidade: data.city || "",
+                        uf: data.state || "",
                         ibge: "",
                         ddd: ""
                     };
