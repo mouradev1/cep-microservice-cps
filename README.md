@@ -7,6 +7,11 @@ API de consulta de CEPs com cache, registro de requisições por IP e integraç�
 Você pode testar a API em produção pelo endpoint público:
 **https://cep.mrmoura.com.br/**
 
+* curl exemplo:
+    ```sh
+    curl https://cep.mrmoura.com.br/cep/01001000
+    ```
+
 ## Funcionalidades
 - Consulta de CEPs usando ViaCEP e BrasilAPI
 - Cache de resultados e de CEPs não encontrados (Redis)
