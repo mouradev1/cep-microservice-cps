@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo:7
+    restart: always
+    env_file:
+      - .env.mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+
+  app1:
+    build: .
+    depends_on:
+      - mongo
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    command: ["npm", "start"]
+
+  app2:
+    build: .
+    depends_on:
+      - mongo
+    env_file:
+      - .env
+    ports:
+      - "3001:3001"
+    command: ["npm", "start"]
+
+volumes:
+  mongo_data:
+    env_file:
+      - .env
+    env_file:
+      - .env
+    env_file:
+      - .env.mongo
