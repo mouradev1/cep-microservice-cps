@@ -10,7 +10,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
     res.status(200).send({
         message: "API de Consulta de CEP está funcionando!",
-        version: "1.2.1",
+        version: "1.2.2",
+        "server": "Nodejs Express",
         status: "OK",
         router: "/cep/:cep"
     });
